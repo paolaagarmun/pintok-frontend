@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import apiHelper from '../helpers/apiHelper'
 
 export const VideoContext = createContext({});
@@ -12,6 +12,10 @@ function VideoProvider ({children}) {
         notes: ""
     })
 
+    useEffect(() => {
+        getAllVideos()
+    }, []);
+    
     const getAllVideos = async () => {
         const response = await apiHelper.get("/tiktoks")
         setVideos(response.data);
