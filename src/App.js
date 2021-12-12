@@ -1,15 +1,20 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import './App.css';
 import NavBar from './components/NavBar';
 import HomeView from './views/HomeView';
+import AddCategoryView from './views/AddCategoryView'
+
 
 function App() {
   return (
-    <div >
-    <NavBar></NavBar>
-     <h2>Test this works</h2>
-     <HomeView/>
-    </div>
+    <BrowserRouter>
+    <NavBar/>
+     <Routes>
+        <Route path="/" element={<HomeView/>}/>
+        <Route path="/addCategory" element={<AddCategoryView/>}/>
+     </Routes>
+    </BrowserRouter>
+    
   );
 }
 

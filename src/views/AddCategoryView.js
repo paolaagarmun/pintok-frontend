@@ -1,10 +1,12 @@
-import {useEffect, useNavigate} from 'react'
+import {useEffect} from 'react'
+
 import { useContext } from "react"
+import { useNavigate } from 'react-router-dom'
 import { CategoryContext } from "../context/CategoryContext"
 
 const CreateCategoryView = () => {
     const { category, setCategory, createCategory} = useContext(CategoryContext)
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     useEffect(() => {
         setCategory({
@@ -18,8 +20,8 @@ const CreateCategoryView = () => {
             ...category,
             [event.target.name]: event.target.value
         });
-        console.log(category)
-    }
+        //console.log(category)
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -32,7 +34,7 @@ const CreateCategoryView = () => {
             image: ""
         });
         navigate("/")
-    }
+    };
 
     return (
         <div>
