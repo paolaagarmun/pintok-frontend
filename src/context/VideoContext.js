@@ -12,12 +12,12 @@ function VideoProvider ({children}) {
         notes: ""
     })
 
-    useEffect(() => {
-        getAllVideos()
-    }, []);
+    // useEffect(() => {
+    //     getAllVideos()
+    // }, []);
     
-    const getAllVideos = async () => {
-        const response = await apiHelper.get("/tiktoks")
+    const getAllVideos = async (id) => {
+        const response = await apiHelper.get(`/tiktoks/${id}`)
         setVideos(response.data);
     }
 
@@ -51,6 +51,7 @@ function VideoProvider ({children}) {
                 videos,
                 singleVideo,
                 getVideoById,
+                getAllVideos,
                 createVideo,
                 updateVideo,
                 deleteVideo,

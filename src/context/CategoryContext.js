@@ -30,6 +30,8 @@ function CategoryProvider ({children}) {
     }
 
     const createCategory = async (obj) => {
+        let { user } = JSON.parse(localStorage.getItem(jwt_string))
+        obj.user = user._id;
         const response = await apiHelper.post("/categories/category", obj)
         getAllCategories()
     }

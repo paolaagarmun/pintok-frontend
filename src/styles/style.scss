@@ -1,1 +1,5 @@
-@import './homeview//homeview'
+$primary-color: #fd2c55;
+
+@import './homeview//homeview';
+@import './singleCatView/singleCatView';
+@import './form/form'

@@ -1,19 +1,19 @@
-import { set } from "mongoose";
 import { useContext, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { CategoryContext } from "../context/CategoryContext";
 import { VideoContext } from "../context/VideoContext";
 
 function AddVideoView () {
     const { singleVideo, setSingleVideo, createVideo } = useContext(VideoContext);
     const { category } = useContext(CategoryContext);
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
+    const { id } = useParams();
 
     useEffect(() => {
         setSingleVideo({
             url: "",
-            category: "",
-            notes: ""
+            notes: "",
+            user: ""
         })
     }, []);
 
@@ -28,12 +28,13 @@ function AddVideoView () {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setSingleVideo({
-            ...singleVideo
+            ...singleVideo,
+            category: id
         });
         createVideo(singleVideo);
         setSingleVideo({
             url: "",
-            category: "",
+            user: "",
             notes: ""
         })
         //navigate("/") TODO: navigate to category view
@@ -52,8 +53,28 @@ function AddVideoView () {
                     placeholder="add tiktok url"
                 />
                 <input
-                    name = "category"
+                    name = "user"
+                    value = {singleVideo.user}
+                    onChange={handleChange}
+                    className="form-control"
+                    type="text"
+                    placeholder="user"
                 />
+                <input
+                    name= "notes"
+                    value = {singleVideo.notes}
+                    onChange={handleChange}
+                    className="form-control"
+                    type = "text"
+                    placeholder="notes"
+                />
+                <button
+                    className="form-control"
+                    onClick={handleSubmit}
+                    type="submit"
+                >
+                    add video
+                </button>
             </form>
         </div>
     )
