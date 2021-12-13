@@ -8,12 +8,15 @@ import './styles/style.scss'
 
 import VideoProvider from './context/VideoContext';
 import CategoryProvider from './context/CategoryContext';
+import AuthProvider from './context/AuthContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <CategoryProvider>
       <VideoProvider>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </VideoProvider>
     </CategoryProvider>
   </React.StrictMode>,

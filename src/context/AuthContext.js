@@ -47,7 +47,25 @@ const AuthProvider = ({children}) => {
         }
     }
 
-    
+    const signUpUser = async (obj) => {
+        const response = await apiHelper.post("/auth/signup", obj)
+        if (response.data) {
+            setLocalStorageToken(response.data);
+            alert('Signed up and logged in') //TODO remove alert
+            setLoggedIn(true);
+            setUser({
+                name: "",
+                email: "",
+                password: "",
+                role: ""
+            })
+        }
+    }
+
+    const logOutUser = () => {
+        localStorage.removeItem(jwt_string);
+        setLoggedIn(false)
+    }
 
     return (
         <AuthContext.Provider
@@ -55,10 +73,15 @@ const AuthProvider = ({children}) => {
                 loggedIn,
                 userName,
                 user,
-                setUser
+                setUser,
+                loginUser,
+                logOutUser,
+                signUpUser
             }}
         >
             {children}
         </AuthContext.Provider>
     )
 }
+
+export default AuthProvider
