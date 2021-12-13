@@ -33,6 +33,7 @@ const CreateCategoryView = () => {
             name: "",
             image: ""
         });
+        alert('category created')
         navigate("/")
     };
 
