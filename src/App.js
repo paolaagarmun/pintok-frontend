@@ -5,6 +5,9 @@ import HomeView from './views/HomeView';
 import AddCategoryView from './views/AddCategoryView'
 import SingleCategoryView from './views/SingleCategoryView';
 import AddVideoView from './views/AddVideoView';
+import LoginView from './views/LoginView';
+import SignupView from './views/SignupView';
+import AuthRoute from './components/AuthRoute';
 
 
 function App() {
@@ -13,9 +16,13 @@ function App() {
     <NavBar/>
      <Routes>
         <Route path="/" element={<HomeView/>}/>
-        <Route path="/addCategory" element={<AddCategoryView/>}/>
-        <Route path="/singleCategoryView/:id" element={<SingleCategoryView/>}/>
-        <Route path="/addVideo/:id" element={<AddVideoView/>}/>
+        <Route path="/login" element={<LoginView/>}/>
+        <Route path="/signup" element={<SignupView/>}/>
+        <Route element={<AuthRoute/>}>
+          <Route path="/addCategory" element={<AddCategoryView/>}/>
+          <Route path="/singleCategoryView/:id" element={<SingleCategoryView/>}/>
+          <Route path="/addVideo/:id" element={<AddVideoView/>}/>
+        </Route>
      </Routes>
     </BrowserRouter>
     

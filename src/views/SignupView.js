@@ -3,22 +3,23 @@ import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
-function LoginView () {
+function SignupView () {
     const navigate = useNavigate();
-    const { loginUser } = useContext(AuthContext);
+    const { signUpUser } = useContext(AuthContext)
     const [validated, setValidated] = useState(false);
     const [errors, setErrors] = useState([]);
     const [user, setUser] = useState({
-        password: "",
-        email: ""
-    });
+        name: "",
+        email: "",
+        password: ""
+    })
 
     const handleChange = (event) => {
         setUser({
             ...user,
             [event.target.name]: event.target.value
         })
-    }
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -28,16 +29,17 @@ function LoginView () {
             setValidated(true);
             return;
         }
-        const response = await loginUser(user);
+        const response = await signUpUser(user);
         if (response?.errors) {
-            setErrors(response.errors)
+            setErrors(response.errors);
         }
         setUser({
+            name: "",
             email: "",
             password: ""
-        })
+        });
         navigate("/")
-    }
+    };
 
     return (
         <div className="container mt-5">
@@ -47,7 +49,20 @@ function LoginView () {
                 noValidate
                 validated={validated}
             >
-                <h2>Log in</h2>
+                <h2>Sign up</h2>
+                <Form.Group>
+                    <Form.Control
+                        value={user.name}
+                        onChange={handleChange}
+                        name="name"
+                        required
+                        type="text"
+                        placeholder="Enter your name"
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        Name is required
+                    </Form.Control.Feedback>
+                </Form.Group>
                 <Form.Group>
                     <Form.Control
                         value={user.email}
@@ -63,9 +78,9 @@ function LoginView () {
                 </Form.Group>
                 <Form.Group>
                     <Form.Control
-                        name="password"
                         value={user.password}
                         onChange={handleChange}
+                        name="password"
                         required
                         type="password"
                         placeholder="Enter password"
@@ -74,13 +89,15 @@ function LoginView () {
                         Password is required
                     </Form.Control.Feedback>
                 </Form.Group>
-                <Button className="form-control mt-3" type="submit">
+                <Button
+                    className="form-control mt-3" 
+                    type="submit"
+                >
                     Log in
                 </Button>
             </Form>
         </div>
-    );
+    )
+}
 
-};
-
-export default LoginView
+export default SignupView;
