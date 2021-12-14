@@ -19,14 +19,25 @@ function SingleCategoryView () {
     }, [])
 
     return (
-        <>
-            <div>
-                <Link
-                    to={`/addVideo/${id}`} 
-                    className="btn btn-outline-dark"
-                >
-                Add Video
-                </Link>
+        <div className="singleCatview">
+            <div className="addVideoBtn">
+            <h4>Category: {category.name}</h4>
+                <div className="btns">
+                    <Link
+                        to={`/addVideo/${id}`} 
+                        className="btn"
+                    >
+                    Add Video
+                    </Link>
+                    <span>   </span>
+                    <Link
+                        to={`/editCategory/${id}`} 
+                        className="btn"
+                    >
+                        Edit category
+                    </Link>
+                </div>
+                
             </div>
             <div className="container mt-5 categoryview">
                 <div className="container">
@@ -43,7 +54,8 @@ function SingleCategoryView () {
 
                 </div>
             </div>
-        </>
+    
+        </div>
         
     )
     

@@ -8,6 +8,7 @@ import AddVideoView from './views/AddVideoView';
 import LoginView from './views/LoginView';
 import SignupView from './views/SignupView';
 import AuthRoute from './components/AuthRoute';
+import EditCategoryView from './views/EditCategoryView';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/addCategory" element={<AddCategoryView/>}/>
           <Route path="/singleCategoryView/:id" element={<SingleCategoryView/>}/>
           <Route path="/addVideo/:id" element={<AddVideoView/>}/>
+          <Route path="/editCategory/:id" element={<EditCategoryView/>} />
         </Route>
      </Routes>
     </BrowserRouter>

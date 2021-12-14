@@ -13,7 +13,7 @@ function AddVideoView () {
         setSingleVideo({
             url: "",
             notes: "",
-            user: ""
+            category: id
         })
     }, []);
 
@@ -27,14 +27,9 @@ function AddVideoView () {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setSingleVideo({
-            ...singleVideo,
-            category: id
-        });
         createVideo(singleVideo);
         setSingleVideo({
             url: "",
-            user: "",
             notes: ""
         })
         //navigate("/") TODO: navigate to category view
@@ -51,14 +46,6 @@ function AddVideoView () {
                     className="form-control"
                     type="url"
                     placeholder="add tiktok url"
-                />
-                <input
-                    name = "user"
-                    value = {singleVideo.user}
-                    onChange={handleChange}
-                    className="form-control"
-                    type="text"
-                    placeholder="user"
                 />
                 <input
                     name= "notes"

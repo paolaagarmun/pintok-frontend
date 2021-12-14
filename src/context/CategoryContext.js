@@ -36,6 +36,13 @@ function CategoryProvider ({children}) {
         getAllCategories()
     }
 
+    const updateCategory = async (id) => {
+        let {user} = JSON.parse(localStorage.getItem(jwt_string))
+        if (obj.user._id !== user._id) return;
+        const response = await apiHelper.put(`/categories/category/${id}`);
+        getAllCategories();
+    }
+
     const deleteCategory = async (id) => {
         await apiHelper.delete(`/categories/category/${id}`);
         getAllCategories();
@@ -49,7 +56,8 @@ function CategoryProvider ({children}) {
                 getCategoryById,
                 createCategory,
                 deleteCategory,
-                setCategory
+                setCategory,
+                updateCategory
             }}
         >
             {children}

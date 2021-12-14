@@ -1,0 +1,23 @@
+.singleCatview {
+    margin-top: 3em;
+        .addVideoBtn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 25vw;
+            margin: 0 auto;
+        }
+        .btn {
+            background-color: $primary-color;
+            color: white;
+            font-weight: bold;
+        }
+        .btn:hover{
+            background-color: white;
+            color: $primary-color;
+            border-color: $primary-color;
+            font-weight: bold;
+        }
+
+        
+}
