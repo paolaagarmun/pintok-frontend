@@ -1,9 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { CategoryContext } from "../context/CategoryContext";
 import apiHelper from "../helpers/apiHelper";
 
 export const AuthContext = createContext({});
 
 const AuthProvider = ({children}) => {
+    const { getAllCategoriesByUser, getAllCategories } = useContext(CategoryContext)
     const jwt_string = "jwtpintok";
     const [loggedIn, setLoggedIn] = useState(false);
     const [user, setUser] = useState({});
@@ -32,6 +34,7 @@ const AuthProvider = ({children}) => {
             setUser(data.user)
             setLocalStorageToken(data)
             setLoggedIn(true)
+            getAllCategoriesByUser();
         } catch (error) {
             console.log(error)
         }
@@ -68,6 +71,7 @@ const AuthProvider = ({children}) => {
     const logOutUser = () => {
         localStorage.removeItem(jwt_string);
         setLoggedIn(false)
+        getAllCategories();
     }
 
     return (

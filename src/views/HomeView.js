@@ -9,7 +9,6 @@ function HomeView () {
         {categories.map(category => (
             <CategoryHomeCard key={category._id} obj={category}/>
         ))}
-        {/* {JSON.stringify(categories)} */}
         </div>
     )
 }

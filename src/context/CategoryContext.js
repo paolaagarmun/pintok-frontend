@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
 import apiHelper from "../helpers/apiHelper";
+import { AuthContext } from "./AuthContext";
 
 export const CategoryContext = createContext({});
 
@@ -10,14 +11,32 @@ function CategoryProvider ({children}) {
         name: "",
         image: ""
     })
+    
+    const { loggedIn } = useContext(AuthContext)
+    
 
     useEffect(() => {
-        getAllCategories();
+        if (loggedIn) {
+            getAllCategoriesByUser()
+        } else {
+            getAllCategories();
+        }
     }, [])
 
     const getAllCategories = async () => {
         const response = await apiHelper.get("/categories");
         setCategories(response.data)
+    }
+
+    const getAllCategoriesByUser = async () => {
+        alert("reached")
+        const { user } = JSON.parse(localStorage.getItem(jwt_string))
+        try {
+            const response = await apiHelper.get(`/categories/${user._id}`);
+            setCategories(response.data)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const getCategoryById = async (id) => {
@@ -38,7 +57,7 @@ function CategoryProvider ({children}) {
 
     const updateCategory = async (id) => {
         let {user} = JSON.parse(localStorage.getItem(jwt_string))
-        if (obj.user._id !== user._id) return;
+        //if (obj.user._id !== user._id) return;
         const response = await apiHelper.put(`/categories/category/${id}`);
         getAllCategories();
     }
@@ -57,7 +76,9 @@ function CategoryProvider ({children}) {
                 createCategory,
                 deleteCategory,
                 setCategory,
-                updateCategory
+                updateCategory,
+                getAllCategoriesByUser,
+                getAllCategories
             }}
         >
             {children}
