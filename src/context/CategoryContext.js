@@ -14,13 +14,10 @@ function CategoryProvider ({children}) {
     
     const { loggedIn } = useContext(AuthContext)
     
-
     useEffect(() => {
-        if (loggedIn) {
-            getAllCategoriesByUser()
-        } else {
-            getAllCategories();
-        }
+        console.log(loggedIn)
+        if (loggedIn) getAllCategoriesByUser();
+        else getAllCategories()
     }, [])
 
     const getAllCategories = async () => {
@@ -29,9 +26,9 @@ function CategoryProvider ({children}) {
     }
 
     const getAllCategoriesByUser = async () => {
-        alert("reached")
-        const { user } = JSON.parse(localStorage.getItem(jwt_string))
         try {
+            console.log('before api call')
+            const { user } = JSON.parse(localStorage.getItem(jwt_string))
             const response = await apiHelper.get(`/categories/${user._id}`);
             setCategories(response.data)
         } catch (error) {
@@ -55,10 +52,17 @@ function CategoryProvider ({children}) {
         getAllCategories()
     }
 
-    const updateCategory = async (id) => {
+    const imageCategoryUpload = async (id, img) => {
+        const formData = new FormData();
+        formData.append('image', img);
+        const response = await apiHelper.post(`/categories/category/imageUpload${id}`, formData);
+        getAllCategories();
+    }
+
+    const updateCategory = async (obj) => {
         let {user} = JSON.parse(localStorage.getItem(jwt_string))
-        //if (obj.user._id !== user._id) return;
-        const response = await apiHelper.put(`/categories/category/${id}`);
+        if (obj.user !== user._id) return;
+        const response = await apiHelper.put(`/categories/category/${obj._id}`, obj);
         getAllCategories();
     }
 
@@ -78,7 +82,8 @@ function CategoryProvider ({children}) {
                 setCategory,
                 updateCategory,
                 getAllCategoriesByUser,
-                getAllCategories
+                getAllCategories,
+                imageCategoryUpload
             }}
         >
             {children}

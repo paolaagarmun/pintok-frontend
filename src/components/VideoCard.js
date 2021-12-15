@@ -1,15 +1,33 @@
 import { TikTok } from "react-tiktok";
 import { Card } from "react-bootstrap";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { VideoContext } from "../context/VideoContext";
+import { useNavigate } from "react-router-dom";
 
 function VideoCard({ obj }) {
-  //const imgUrl = "https://www.tiktok.com/@krmoji/video/7040826708429163781?lang=en&is_copy_url=1&is_from_webapp=v1";
+  const { deleteVideo } = useContext(VideoContext);
+  const navigate = useNavigate();
+
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    let choice = window.confirm("Are you sure?");
+    if (!choice) return;
+    await deleteVideo(obj._id);
+    navigate("/")
+  }
   return (
     <Card style={{ width: "25rem"}}>
       <Card.Body>
         <Card.Text>{obj.notes}</Card.Text>
+        <button
+          onClick={handleDelete}
+          className="btn"
+        >
+          delete tiktok
+        </button>
 
         {obj.url ? <TikTok url={obj.url} /> : <h4>No video url</h4>}
+        
       </Card.Body>
     </Card>
   );

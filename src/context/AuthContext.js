@@ -62,6 +62,8 @@ const AuthProvider = ({children}) => {
             const { data } = response;
             setUser(data.user);
             setLocalStorageToken(data);
+            // console.log("JERE", loggedIn)
+            getAllCategoriesByUser();
             setLoggedIn(true);
         } catch (error) {
             console.log(error)

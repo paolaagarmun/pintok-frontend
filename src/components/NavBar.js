@@ -19,7 +19,7 @@ function NavBar () {
                         <>
                         <NavLink to="/addCategory">Add Categories</NavLink>
                         <Navbar.Text>
-                            Signed in as: {user.name}
+                            Signed in as: {user?.name}
                         </Navbar.Text>
                         <button onClick={logOutUser} className="btn btn-outline-dakr">
                             Log Out

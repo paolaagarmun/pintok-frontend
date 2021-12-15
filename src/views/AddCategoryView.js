@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { CategoryContext } from "../context/CategoryContext"
 
 const CreateCategoryView = () => {
-    const { category, setCategory, createCategory} = useContext(CategoryContext)
+    const { category, setCategory, createCategory, imageCategoryUpload} = useContext(CategoryContext)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -21,6 +21,15 @@ const CreateCategoryView = () => {
             [event.target.name]: event.target.value
         });
         //console.log(category)
+    };
+
+    const handleImageChange = (event) => {
+        const imageFile = event.target.files[0];
+        setCategory({
+            ...category,
+            image: imageFile
+        });
+        
     };
 
     const handleSubmit = async (event) => {
@@ -52,9 +61,10 @@ const CreateCategoryView = () => {
                 <input
                     name="image"
                     value={category.image}
-                    onChange={handleChange}
+                    onChange={handleImageChange}
                     className='form-control'
-                    type="text" //TODO img type
+                    type="file" //TODO img type
+                    accept="image/*"
                     placeholder='image'
                 />
                 <button
