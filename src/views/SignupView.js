@@ -58,6 +58,7 @@ function SignupView () {
                         required
                         type="text"
                         placeholder="Enter your name"
+                        className="input"
                     />
                     <Form.Control.Feedback type="invalid">
                         Name is required
@@ -71,6 +72,7 @@ function SignupView () {
                         required
                         type="email"
                         placeholder="Enter your email"
+                        className="input"
                     />
                     <Form.Control.Feedback type="invalid">
                         Email is required
@@ -84,6 +86,7 @@ function SignupView () {
                         required
                         type="password"
                         placeholder="Enter password"
+                        className="input"
                     />
                     <Form.Control.Feedback type="invalid">
                         Password is required

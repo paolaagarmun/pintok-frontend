@@ -6,7 +6,7 @@ import { VideoContext } from "../context/VideoContext";
 function AddVideoView () {
     const { singleVideo, setSingleVideo, createVideo } = useContext(VideoContext);
     const { category } = useContext(CategoryContext);
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const { id } = useParams();
 
     useEffect(() => {
@@ -32,7 +32,7 @@ function AddVideoView () {
             url: "",
             notes: ""
         })
-        //navigate("/") TODO: navigate to category view
+        // navigate(`/singleCategoryView/${id}`) 
     }
 
     return (

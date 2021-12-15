@@ -56,6 +56,7 @@ function LoginView () {
                         required
                         type="email"
                         placeholder="Enter your email"
+                        className="input"
                     />
                     <Form.Control.Feedback type="invalid">
                         Email is required
@@ -69,6 +70,7 @@ function LoginView () {
                         required
                         type="password"
                         placeholder="Enter password"
+                        className="input"
                     />
                     <Form.Control.Feedback type="invalid">
                         Password is required

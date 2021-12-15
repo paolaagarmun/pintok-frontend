@@ -9,6 +9,7 @@ function EditCategoryView() {
     getCategoryById,
     deleteCategory,
     updateCategory,
+    imageCategoryUpload
   } = useContext(CategoryContext);
   const { user } = JSON.parse(localStorage.getItem("jwtpintok"));
   const { id } = useParams();
@@ -25,6 +26,11 @@ function EditCategoryView() {
     });
     console.log("category:", category);
   };
+
+  const handleImageChange = (event) => {
+    const imageFile = event.target.files[0];
+    imageCategoryUpload(id, imageFile)
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -60,10 +66,10 @@ function EditCategoryView() {
         />
         <input
           name="image"
-          value={category.image}
-          onChange={handleChange}
+          onChange={handleImageChange}
           className="form-control"
-          type="text"
+          accept="image/*"
+          type="file"
           placeholder="image"
         />
         <button onClick={handleSubmit} className="btn form-control">

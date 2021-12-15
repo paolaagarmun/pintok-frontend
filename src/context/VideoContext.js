@@ -29,20 +29,21 @@ function VideoProvider ({children}) {
     const createVideo = async (obj) => {
         let { user } = JSON.parse(localStorage.getItem(jwt_string));
         obj.user = user._id;
+        console.log("USER ->", obj);
         const response = await apiHelper.post("/tiktoks/video", obj);
-        getAllVideos();
+        getAllVideos(obj.category);
     }
 
     const updateVideo = async (id, obj) => {
         let { user } = JSON.parse(localStorage.getItem(jwt_string));
         if (obj.user._id !== user._id) return;
         const response = await apiHelper.put(`/tiktoks/video/${id}`, obj);
-        getAllVideos()
+        getAllVideos(obj.category)
     }
 
     const deleteVideo = async (id) => {
         await apiHelper.delete(`/tiktoks/video/${id}`);
-        getAllVideos();
+        // getAllVideos(obj.category);
     }
 
     return (

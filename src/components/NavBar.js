@@ -7,7 +7,7 @@ import logo from '../images/pintok.png'
 function NavBar () {
     const { loggedIn, logOutUser, user } = useContext(AuthContext)
     return (
-        <Navbar className='customNav'>
+        <Navbar sticky="top" className='customNav'>
             <Container>
             <a className="navbar-brand" href="/">
                 <img src={logo} alt="..." width='150'/>
@@ -17,19 +17,20 @@ function NavBar () {
                 <Nav>
                     {loggedIn ? (
                         <>
-                        <NavLink to="/addCategory">Add Categories</NavLink>
+                        <NavLink to="/addCategory" className="btnAddCateg">Add Categories</NavLink>
                         <Navbar.Text>
-                            Signed in as: {user?.name}
+                            <i>Signed in as: <span className='userName'>{user?.name}</span></i>
                         </Navbar.Text>
-                        <button onClick={logOutUser} className="btn btn-outline-dakr">
+                        <button onClick={logOutUser} className="btnNav">
                             Log Out
                         </button>
                         
                         </>
                     ) : (
                         <>
-                        <NavLink to="/signup">Signup</NavLink>
-                        <NavLink to="/login">Login</NavLink>
+                        <NavLink to="/login" className="btnNavLogin">Login</NavLink>
+                        
+                        <NavLink to="/signup" className="btnNav">Signup</NavLink>
                         </>
                     )}
                 </Nav>

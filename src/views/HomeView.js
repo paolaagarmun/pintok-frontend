@@ -5,10 +5,19 @@ import { CategoryContext } from "../context/CategoryContext";
 function HomeView () {
     const { categories } = useContext(CategoryContext);
     return (
-        <div className="container mt-5 homeview">
-        {categories.map(category => (
+        <div className="container mt-5 homeview ">
+        
+        {categories.length === 0 ?
+            <h3>Go ahead and create your first category!</h3>
+        :
+
+        categories.map(category => (
             <CategoryHomeCard key={category._id} obj={category}/>
-        ))}
+        ))
+
+        }
+        
+        
         </div>
     )
 }

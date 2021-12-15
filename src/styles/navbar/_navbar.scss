@@ -1,0 +1,42 @@
+.customNav {
+    background-color: white;
+    a.btnNav {
+        background-color: $primary-color;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 7px;
+        border-radius: 5px;
+        margin-left: 5px;
+    }
+    .btnNav{
+        background-color: $primary-color;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 7px;
+        border-radius: 5px;
+        margin-left: 10px;
+        border: none;
+    }
+    a.btnNavLogin {
+        
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 7px;
+    }
+    .btnAddCateg {
+        color: black;
+        text-decoration: none;
+        padding: 7px;
+        
+    }
+    .btnAddCateg:hover{
+        color: $primary-color
+    }
+    .userName{
+        color: $primary-color;
+        font-weight: bold;
+    }
+}

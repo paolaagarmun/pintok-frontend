@@ -1,5 +1,7 @@
 .singleCatview {
     margin-top: 3em;
+    display: flex;
+    flex-wrap: wrap;
         .addVideoBtn {
             display: flex;
             flex-direction: column;

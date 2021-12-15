@@ -60,7 +60,6 @@ const CreateCategoryView = () => {
                 />
                 <input
                     name="image"
-                    value={category.image}
                     onChange={handleImageChange}
                     className='form-control'
                     type="file" //TODO img type
