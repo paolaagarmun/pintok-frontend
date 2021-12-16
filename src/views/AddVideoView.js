@@ -1,4 +1,5 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Alert } from "react-bootstrap";
 import { useNavigate, useParams } from 'react-router-dom'
 import { CategoryContext } from "../context/CategoryContext";
 import { VideoContext } from "../context/VideoContext";
@@ -8,6 +9,7 @@ function AddVideoView () {
     const { category } = useContext(CategoryContext);
     const navigate = useNavigate();
     const { id } = useParams();
+    const [success, setSuccess] = useState(false)
 
     useEffect(() => {
         setSingleVideo({
@@ -32,11 +34,18 @@ function AddVideoView () {
             url: "",
             notes: ""
         })
-        navigate(`/singleCategoryView/${id}`) 
+        setSuccess(true)
+        setTimeout(() => {
+            setSuccess(false),
+            navigate(`/singleCategoryView/${id}`)     
+        }, 3000)
+         
     }
 
     return (
         <div>
+        { success && <Alert className='alert-success'>The tiktok was uploaded successfully!</Alert> }
+
             <form className="form">
                 <h2>Add a tiktok video:</h2>
                 <input

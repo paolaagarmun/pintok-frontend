@@ -46,7 +46,7 @@ const CreateCategoryView = () => {
         setTimeout(() => {
             setSuccess(false),
             navigate("/")     
-        }, 4000)
+        }, 3000)
         setCategory({
             name: "",
             image: ""
@@ -59,7 +59,7 @@ const CreateCategoryView = () => {
 
     return (
         <div>
-        { success && <Alert className='alert-success'>Hi! I'm an alert</Alert> }
+        { success && <Alert className='alert-success'>The category was created successfully!</Alert> }
             
             <form className="form">
                 <h2>Add Category</h2>

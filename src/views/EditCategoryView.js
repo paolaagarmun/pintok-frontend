@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { Alert } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { CategoryContext } from "../context/CategoryContext";
 
@@ -14,6 +15,7 @@ function EditCategoryView() {
   const { user } = JSON.parse(localStorage.getItem("jwtpintok"));
   const { id } = useParams();
   const navigate = useNavigate();
+  const [success, setSuccess] = useState(false)
 
   useEffect(() => {
     getCategoryById(id);
@@ -42,6 +44,11 @@ function EditCategoryView() {
     };
     console.log(data);
     await updateCategory(data);
+    setSuccess(true)
+    setTimeout(() => {
+        setSuccess(false),
+        navigate("/")     
+    }, 3000)
   };
 
   const handleDelete = async (event) => {
@@ -54,6 +61,7 @@ function EditCategoryView() {
 
   return (
     <div className="container mt-5">
+    { success && <Alert className='alert-success'>The category was updated successfully!</Alert> }
       <form className="form">
         <h3>Edit category: {category.name}</h3>
         <input
