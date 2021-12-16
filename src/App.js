@@ -19,9 +19,9 @@ function App() {
         <Route path="/" element={<HomeView/>}/>
         <Route path="/login" element={<LoginView/>}/>
         <Route path="/signup" element={<SignupView/>}/>
+        <Route path="/singleCategoryView/:id" element={<SingleCategoryView/>}/>
         <Route element={<AuthRoute/>}>
           <Route path="/addCategory" element={<AddCategoryView/>}/>
-          <Route path="/singleCategoryView/:id" element={<SingleCategoryView/>}/>
           <Route path="/addVideo/:id" element={<AddVideoView/>}/>
           <Route path="/editCategory/:id" element={<EditCategoryView/>} />
         </Route>

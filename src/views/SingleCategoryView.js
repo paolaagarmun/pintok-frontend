@@ -5,13 +5,14 @@
 import { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import VideoCard from "../components/VideoCard";
+import { AuthContext } from "../context/AuthContext";
 import { CategoryContext } from "../context/CategoryContext";
 import { VideoContext } from "../context/VideoContext";
 
 function SingleCategoryView() {
-  const { category, setCategory, getCategoryById } =
-    useContext(CategoryContext);
-  const { videos, video, getAllVideos } = useContext(VideoContext);
+  const { category, getCategoryById } = useContext(CategoryContext);
+  const { videos, getAllVideos } = useContext(VideoContext);
+  const { loggedIn } = useContext(AuthContext)
   const { id } = useParams();
 
   useEffect(() => {
@@ -24,6 +25,9 @@ function SingleCategoryView() {
       <div className="addVideoBtn">
         <h4>Category: {category.name}</h4>
         <div className="btns">
+        {
+          loggedIn && 
+          <>
           <Link to={`/addVideo/${id}`} className="btn">
             Add Video
           </Link>
@@ -31,6 +35,10 @@ function SingleCategoryView() {
           <Link to={`/editCategory/${id}`} className="btn">
             Edit category
           </Link>
+          </>
+
+        }
+         
         </div>
       </div>
       <div className="container-fluid mt-5">

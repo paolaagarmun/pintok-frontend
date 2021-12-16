@@ -52,14 +52,14 @@ function CategoryProvider ({children}) {
         const response = await apiHelper.post("/categories/category", newCategory)
         
         await imageCategoryUpload(response.data._id, image)
-        getAllCategories()
+        getAllCategoriesByUser()
     }
 
     const imageCategoryUpload = async (id, img) => {
         const formData = new FormData();
         formData.append('image', img);
         const response = await apiHelper.post(`/categories/category/imageUpload/${id}`, formData);
-        getAllCategories();
+        getAllCategoriesByUser();
     }
 
     const updateCategory = async (obj) => {
@@ -67,12 +67,12 @@ function CategoryProvider ({children}) {
         if (obj.user !== user._id) return;
         const {image, ...category} = obj;
         const response = await apiHelper.put(`/categories/category/${obj._id}`, category);
-        getAllCategories();
+        getAllCategoriesByUser();
     }
 
     const deleteCategory = async (id) => {
         await apiHelper.delete(`/categories/category/${id}`);
-        getAllCategories();
+        getAllCategoriesByUser();
     }
     
     return (
