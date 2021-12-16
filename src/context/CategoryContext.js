@@ -49,17 +49,28 @@ function CategoryProvider ({children}) {
         let { user } = JSON.parse(localStorage.getItem(jwt_string))
         obj.user = user._id;
         const {image, ...newCategory} = obj;
-        const response = await apiHelper.post("/categories/category", newCategory)
-        
-        await imageCategoryUpload(response.data._id, image)
-        getAllCategoriesByUser()
+        try {
+            const response = await apiHelper.post("/categories/category", newCategory)
+            
+            await imageCategoryUpload(response.data._id, image)
+            getAllCategoriesByUser()
+            
+        } catch (error) {
+            console.log("ERROR", error);
+        }
     }
 
     const imageCategoryUpload = async (id, img) => {
         const formData = new FormData();
         formData.append('image', img);
-        const response = await apiHelper.post(`/categories/category/imageUpload/${id}`, formData);
-        getAllCategoriesByUser();
+        try {
+            const response = await apiHelper.post(`/categories/category/imageUpload/${id}`, formData);
+            getAllCategoriesByUser();
+            return response;
+            
+        } catch (error) {
+            console.log("ERROR", error);
+        }
     }
 
     const updateCategory = async (obj) => {

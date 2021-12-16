@@ -32,7 +32,7 @@ function AddVideoView () {
             url: "",
             notes: ""
         })
-        // navigate(`/singleCategoryView/${id}`) 
+        navigate(`/singleCategoryView/${id}`) 
     }
 
     return (

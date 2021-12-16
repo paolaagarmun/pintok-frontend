@@ -1,5 +1,6 @@
 .customNav {
     background-color: white;
+    border-bottom: 1px solid lightgray;
     a.btnNav {
         background-color: $primary-color;
         color: white;
@@ -12,12 +13,16 @@
     .btnNav{
         background-color: $primary-color;
         color: white;
-        font-weight: bold;
+        
         text-decoration: none;
-        padding: 7px;
+        padding: 10px;
         border-radius: 5px;
         margin-left: 10px;
         border: none;
+    }
+    .btnNav:hover{
+        color: black;
+    
     }
     a.btnNavLogin {
         
@@ -33,7 +38,8 @@
         
     }
     .btnAddCateg:hover{
-        color: $primary-color
+        color: $primary-color;
+        border-bottom: 3px solid $primary-color;
     }
     .userName{
         color: $primary-color;

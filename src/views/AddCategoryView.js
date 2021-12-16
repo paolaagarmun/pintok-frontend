@@ -1,12 +1,15 @@
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 
 import { useContext } from "react"
+import { Alert } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { CategoryContext } from "../context/CategoryContext"
 
 const CreateCategoryView = () => {
     const { category, setCategory, createCategory, imageCategoryUpload} = useContext(CategoryContext)
     const navigate = useNavigate()
+    const [success, setSuccess] = useState(false)
+    
 
     useEffect(() => {
         setCategory({
@@ -37,17 +40,27 @@ const CreateCategoryView = () => {
         setCategory({
             ...setCategory
         });
-        createCategory(category);
+         await createCategory(category);
+        
+        setSuccess(true)
+        setTimeout(() => {
+            setSuccess(false),
+            navigate("/")     
+        }, 4000)
         setCategory({
             name: "",
             image: ""
         });
-        alert('category created')
-        navigate("/")
+        
+        
+        //alert('category created')
+        // navigate("/")
     };
 
     return (
         <div>
+        { success && <Alert className='alert-success'>Hi! I'm an alert</Alert> }
+            
             <form className="form">
                 <h2>Add Category</h2>
                 <input
@@ -72,6 +85,7 @@ const CreateCategoryView = () => {
                 >
                     add category
                 </button>
+                
             </form>
         </div>
     )
