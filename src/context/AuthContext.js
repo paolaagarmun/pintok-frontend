@@ -72,7 +72,7 @@ const AuthProvider = ({children}) => {
 
     const logOutUser = () => {
         localStorage.removeItem(jwt_string);
-        setLoggedIn(false)
+        setLoggedIn(false);
         getAllCategories();
     }
 

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, InputGroup, FontAwesomeIcon } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
@@ -47,7 +47,7 @@ function LoginView () {
                 noValidate
                 validated={validated}
             >
-                <h2>Log in</h2>
+                <h3>Log in</h3>
                 <Form.Group>
                     <Form.Control
                         value={user.email}

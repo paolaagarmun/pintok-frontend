@@ -49,7 +49,7 @@ function SignupView () {
                 noValidate
                 validated={validated}
             >
-                <h2>Sign up</h2>
+                <h3>Sign up</h3>
                 <Form.Group>
                     <Form.Control
                         value={user.name}
