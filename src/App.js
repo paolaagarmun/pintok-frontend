@@ -9,6 +9,7 @@ import LoginView from './views/LoginView';
 import SignupView from './views/SignupView';
 import AuthRoute from './components/AuthRoute';
 import EditCategoryView from './views/EditCategoryView';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/editCategory/:id" element={<EditCategoryView/>} />
         </Route>
      </Routes>
+     <Footer/>
     </BrowserRouter>
     
   );

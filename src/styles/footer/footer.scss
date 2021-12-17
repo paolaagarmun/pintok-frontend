@@ -1,0 +1,24 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px;
+    bottom: 0;
+    
+    .links a{
+        margin-left: 15px;
+        text-decoration: none;
+        color: gray
+    }
+    .links {
+        display: flex;
+    }
+    .links p {
+        margin-left: 15px;
+        color: gray;
+        font-style: italic;
+    }
+    .pintok {
+        font-weight: bold;
+        color: $primary-color
+    }
+}
