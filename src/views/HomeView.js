@@ -8,11 +8,7 @@ function HomeView () {
     const { categories } = useContext(CategoryContext);
     return (
         <div className="homeviewFull">
-            {!loggedIn && 
-            <div className="sideFilter">
-
-            </div>
-            }
+            
         <div className="container mt-5 homeview ">
         
         
