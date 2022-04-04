@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import apiHelper from '../helpers/apiHelper'
 
 export const VideoContext = createContext({});
@@ -29,7 +29,7 @@ function VideoProvider ({children}) {
     const createVideo = async (obj) => {
         let { user } = JSON.parse(localStorage.getItem(jwt_string));
         obj.user = user._id;
-        console.log("USER ->", obj);
+        //console.log("USER ->", obj);
         const response = await apiHelper.post("/tiktoks/video", obj);
         getAllVideos(obj.category);
     }
